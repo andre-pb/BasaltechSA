@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<style>
+
+@page { size: A4; margin: 0; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --orange:      #F07020;
+  --orange-dark: #C85A0C;
+  --dark:        #ffffff;
+  --card:        #f6f7f9;
+  --card-2:      #eef0f4;
+  --line:        #d6dae1;
+  --text:        #1f2328;
+  --muted:       #5c6773;
+  --white:       #0b0d11;
+}
+
+body {
+  font-family: "Liberation Sans", Arial, sans-serif;
+  background: var(--dark);
+  color: var(--text);
+  font-size: 8.5pt;
+  line-height: 1.4;
+}
+
+.page {
+  width: 210mm;
+  height: 297mm;
+  position: relative;
+  overflow: hidden;
+  break-after: page;
+  background: var(--dark);
+}
+.page:last-child { break-after: auto; }
+
+.top-bar, .btm-bar {
+  position: absolute; left: 0; right: 0; height: 5px; z-index: 10;
+  background: linear-gradient(90deg, var(--orange-dark), var(--orange), var(--orange-dark));
+}
+.top-bar { top: 0; }
+.btm-bar { bottom: 0; }
+
+.stripes {
+  position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background-image: repeating-linear-gradient(
+    -45deg, transparent, transparent 20px,
+    rgba(240,112,32,0.025) 20px, rgba(240,112,32,0.025) 40px
+  );
+}
+
+/* ─── SHARED ─────────────────────────── */
+.eyebrow {
+  font-family: "URW Gothic", "Liberation Sans", sans-serif;
+  font-size: 6.5pt; font-weight: 700; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--orange);
+  display: flex; align-items: center; gap: 7px; margin-bottom: 4pt;
+}
+.eyebrow::before { content: ''; width: 18px; height: 2px; background: var(--orange); flex-shrink: 0; }
+
+.section-title {
+  font-family: "URW Gothic", "Liberation Sans", sans-serif;
+  font-size: 20pt; font-weight: 700; line-height: 1.1; color: var(--white); margin-bottom: 3pt;
+}
+.section-title .acc { color: var(--orange); }
+.section-sub { font-size: 8pt; color: rgba(31,35,40,0.72); line-height: 1.5; margin-bottom: 8pt; }
+
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 5px; padding: 7px 10px; }
+.card-orange {
+  background: rgba(240,112,32,0.09); border: 1px solid rgba(240,112,32,0.28);
+  border-left: 3px solid var(--orange); border-radius: 5px; padding: 7px 10px;
+}
+
+.feat-item { display: flex; gap: 6px; align-items: flex-start; margin-bottom: 5pt; }
+.feat-dot {
+  width: 12px; height: 12px; flex-shrink: 0; margin-top: 2px;
+  background: rgba(240,112,32,0.12); border: 1px solid rgba(240,112,32,0.4);
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+}
+.feat-dot::after { content: ''; width: 4px; height: 4px; background: var(--orange); border-radius: 50%; }
+.feat-title { font-family: "URW Gothic", sans-serif; font-weight: 700; font-size: 8.5pt; color: var(--white); display: block; line-height: 1.2; }
+.feat-desc { font-size: 7pt; color: var(--muted); line-height: 1.35; }
+
+.check-item {
+  display: flex; align-items: center; gap: 6px;
+  background: var(--card-2); border: 1px solid var(--line);
+  border-radius: 4px; padding: 5px 9px; margin-bottom: 3.5pt;
+}
+.check-mark { color: var(--orange); font-size: 9pt; font-weight: 700; flex-shrink: 0; }
+.check-text { font-family: "URW Gothic", sans-serif; font-weight: 700; font-size: 7.5pt; color: var(--text); }
+
+.img-box { border-radius: 6px; overflow: hidden; border: 1px solid var(--line); line-height: 0; }
+.img-box img { width: 100%; display: block; filter: saturate(0.9); object-fit: cover; }
+
+.two-col { display: flex; gap: 10px; }
+.col-l { flex: 0 0 103mm; width: 103mm; }
+.col-r { flex: 1; }
+
+.pg-footer {
+  position: absolute; bottom: 6mm; left: 0; right: 0;
+  padding: 2.5mm 14mm 0; border-top: 1px solid var(--line);
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 7pt; color: var(--muted); z-index: 5;
+}
+.pg-footer-brand { font-family: "URW Gothic", sans-serif; font-weight: 700; color: var(--orange); font-size: 8pt; }
+
+/* ════ PAGE 1 ═══════════════════════════ */
+
+.p1-bg {
+  position: absolute; top: 0; left: 0; right: 0; height: 97mm; z-index: 0;
+  background-image: url('file:///sessions/stoic-focused-clarke/mnt/BasaltechSA/images/BasaltMeshRoad.avif');
+  background-size: cover; background-position: center 35%;
+  filter: brightness(1.05) saturate(0.75);
+}
+.p1-grad {
+  position: absolute; top: 0; left: 0; right: 0; height: 104mm; z-index: 1;
+  background: linear-gradient(175deg, rgba(255,255,255,0.96) 0%, rgba(255,255,255,0.7) 55%, rgba(255,255,255,1) 100%);
+}
+.p1-cover { position: relative; z-index: 2; padding: 8mm 14mm 6mm; }
+
+.p1-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 7mm; }
+.p1-logo { height: 22mm; width: auto; }
+
+/* QR Code panel — page 1 (big, fills space) */
+.qr-panel {
+  display: flex; gap: 12px; align-items: center;
+  background: var(--card); border: 1px solid var(--line);
+  border-left: 3px solid var(--orange);
+  border-radius: 5px; padding: 11px 13px; margin-top: 9pt;
+}
+.qr-panel-img {
+  width: 34mm; height: 34mm; flex-shrink: 0;
+  border-radius: 4px; background: #fff; padding: 2mm;
+}
+.qr-panel-img img { width: 100%; height: 100%; display: block; }
+.qr-panel-eyebrow {
+  font-family: "URW Gothic", sans-serif; font-weight: 700; font-size: 6.5pt;
+  color: var(--orange); letter-spacing: 0.22em; text-transform: uppercase;
+  margin-bottom: 4pt;
+}
+.qr-panel-title {
+  font-family: "URW Gothic", sans-serif; font-weight: 700; font-size: 11pt;
+  color: var(--white); line-height: 1.15; margin-bottom: 4pt;
+}
+.qr-panel-text { font-size: 7.5pt; color: var(--muted); line-height: 1.45; margin-bottom: 5pt; }
+.qr-panel-url {
+  font-family: "URW Gothic", sans-serif; font-weight: 700; font-size: 9pt;
+  color: var(--orange); display: block;
+}
+
+/* Web banner with integrated QR — page 2 */
+.web-cta {
+  background: var(--orange); border-radius: 6px; padding: 11px 16px;
+  display: flex; align-items: center; gap: 14px; margin-top: 9pt;
+}
+.web-cta-qr {
+  width: 30mm; height: 30mm; flex-shrink: 0;
+  background: #fff; border-radius: 4px; padding: 2mm;
+}
+.web-cta-qr img { width: 100%; height: 100%; display: block; }
+.web-cta-label {
+  font-family: "URW Gothic", sans-serif; font-size: 7pt; font-weight: 700;
+  letter-spacing: 0.22em; text-transform: uppercase; color: rgba(17,18,20,0.72);
+  margin-bottom: 3pt;
+}
+.web-cta-headline {
+  font-family: "URW Gothic", sans-serif; font-size: 13pt; font-weight: 700;
+  color: #0b0d11; line-height: 1.15; margin-bottom: 3pt;
+}
+.web-cta-url {
+  font-family: "URW Gothic", sans-serif; font-size: 14pt; font-weight: 700;
+  color: #0b0d11; letter-spacing: 0.02em;
+}
+.p1-badge {
+  font-family: "URW Gothic", sans-serif; font-size: 6pt; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase; color: var(--orange);
+  border: 1px solid rgba(240,112,32,0.38); background: rgba(240,112,32,0.09);
+  padding: 3px 10px; border-radius: 20px;
+}
+.p1-tag {
+  font-family: "URW Gothic", sans-serif; font-size: 6.5pt; font-weight: 700;
+  letter-spacing: 0.26em; text-transform: uppercase; color: var(--orange); margin-bottom: 3pt;
+}
+.p1-h1 {
+  font-family: "URW Gothic", "Liberation Sans", sans-serif;
+  font-size: 34pt; font-weight: 700; line-height: 1.0; color: var(--white); margin-bottom: 4pt;
+}
+.p1-h1 .acc { color: var(--orange); }
+.p1-h1 .dim { color: rgba(11,13,17,0.32); }
+.p1-sub { font-size: 9pt; color: rgba(31,35,40,0.72); line-height: 1.6; margin-bottom: 7mm; }
+
+.p1-divider { height: 1px; background: linear-gradient(90deg, var(--orange), rgba(240,112,32,0.08)); margin-bottom: 7mm; }
+
+.p1-stats { display: flex; gap: 7px; }
+.p1-stat {
+  flex: 1; background: rgba(255,255,255,0.94); border: 1px solid var(--line);
+  border-top: 2.5px solid var(--orange); border-radius: 4px; padding: 8px 10px;
+}
+.p1-stat-n { font-family: "URW Gothic", sans-serif; font-size: 18pt; font-weight: 700; color: var(--white); line-height: 1; }
+.p1-stat-n em { color: var(--orange); font-style: normal; }
+.p1-stat-l { font-size: 6pt; color: var(--muted); text-transform: uppercase; letter-spacing: 0.09em; margin-top: 2px; line-height: 1.3; }
+
+.p1-mesh { position: relative; z-index: 2; padding: 8mm 14mm 0; }
+.p1-mesh .section-sub { margin-bottom: 10pt; }
+.p1-mesh .feat-item { margin-bottom: 6.5pt; }
+.p1-mesh .check-item { margin-bottom: 4.5pt; padding: 6px 9px; }
+.p1-mesh .qr-panel { margin-top: 11pt; }
+
+/* ════ PAGE 2 ═══════════════════════════ */
+
+.p2-body { position: relative; z-index: 2; padding: 9mm 14mm 0; }
+
+.comp-table { width: 100%; border-collapse: collapse; font-size: 7.5pt; margin-top: 5pt; }
+.comp-table th {
+  background: var(--card); color: var(--muted);
+  font-family: "URW Gothic", sans-serif; font-weight: 700; font-size: 6.5pt;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 6px 8px; border: 1px solid var(--line); text-align: left;
+}
+.comp-table th.hl { background: rgba(240,112,32,0.14); color: var(--orange); }
+.comp-table td { padding: 6px 8px; border: 1px solid var(--line); color: var(--text); line-height: 1.3; }
+.comp-table tr:nth-child(even) td { background: rgba(255,255,255,0.025); }
+.comp-table tr td.hl, .comp-table tr:nth-child(even) td.hl { background: rgba(240,112,32,0.14); color: var(--white); font-family: "URW Gothic", sans-serif; font-weight: 700; }
+.badge-green {
+  background: rgba(61,186,110,0.16); color: #3dba6e; border: 1px solid rgba(61,186,110,0.35);
+  border-radius: 3px; padding: 1px 6px; font-size: 6.5pt;
+  font-family: "URW Gothic", sans-serif; font-weight: 700;
+}
+
+.contact-grid { display: flex; gap: 10px; margin-bottom: 8pt; }
+.contact-col { flex: 1; }
+.contact-col-title {
+  font-family: "URW Gothic", sans-serif; font-size: 6.5pt; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase; color: var(--orange); margin-bottom: 6pt;
+}
+.loc-item { display: flex; gap: 8px; align-items: flex-start; margin-bottom: 7pt; }
+.loc-icon {
+  width: 20px; height: 20px; background: rgba(240,112,32,0.12);
+  border: 1px solid rgba(240,112,32,0.35); border-radius: 3px;
+  color: var(--orange); font-family: "URW Gothic", sans-serif; font-weight: 700; font-size: 8pt;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.loc-label { font-family: "URW Gothic", sans-serif; font-weight: 700; font-size: 8pt; color: var(--orange); text-transform: uppercase; letter-spacing: 0.08em; display: block; line-height: 1.2; }
+.loc-addr { font-size: 7.5pt; color: var(--muted); line-height: 1.5; }
+
+.person-card {
+  display: flex; gap: 8px; align-items: center;
+  background: var(--card); border: 1px solid var(--line);
+  border-radius: 5px; padding: 7px 10px; margin-bottom: 5pt;
+}
+.person-avatar {
+  width: 26px; height: 26px; background: var(--orange); border-radius: 50%;
+  color: #fff; font-family: "URW Gothic", sans-serif; font-weight: 700; font-size: 10pt;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.person-name { font-family: "URW Gothic", sans-serif; font-weight: 700; font-size: 9pt; color: var(--white); display: block; line-height: 1.2; }
+.person-detail { font-size: 7pt; color: var(--muted); line-height: 1.5; }
+
+.web-banner {
+  background: var(--orange); border-radius: 5px; padding: 9px 14px;
+  display: flex; justify-content: space-between; align-items: center; margin-top: 9pt;
+}
+.web-banner-label { font-family: "URW Gothic", sans-serif; font-size: 7pt; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(17,18,20,0.72); }
+.web-banner-url { font-family: "URW Gothic", sans-serif; font-size: 15pt; font-weight: 700; color: #0b0d11; }
+
+</style>
+</head>
+<body>
+
+<!-- ══════════ PAGE 1 — COVER + MESH ══════════ -->
+<div class="page">
+  <div class="top-bar"></div>
+  <div class="btm-bar"></div>
+  <div class="stripes"></div>
+  <div class="p1-bg"></div>
+  <div class="p1-grad"></div>
+
+  <div class="p1-cover">
+    <div class="p1-header">
+      <img class="p1-logo"
+           src="file:///sessions/stoic-focused-clarke/mnt/BasaltechSA/images/logo/basaltechsa-small-margin.png"
+           alt="BasaltechSA"/>
+      <span class="p1-badge">Product Brochure 2026</span>
+    </div>
+    <div class="p1-tag">◆ Rock Solid Reinforcing</div>
+    <div class="p1-h1">The <span class="acc">Future</span> of <span class="dim">Reinforcement</span></div>
+    <div class="p1-sub">Pioneering Basalt Fiber Reinforced Polymer (BFRP) Composites — the sustainable, high-performance alternative to steel and glass fiber for the modern construction industry.</div>
+    <div class="p1-divider"></div>
+    <div class="p1-stats">
+      <div class="p1-stat"><div class="p1-stat-n">3<em>×</em></div><div class="p1-stat-l">Stronger Than Steel</div></div>
+      <div class="p1-stat"><div class="p1-stat-n">4.5<em>×</em></div><div class="p1-stat-l">Lighter Than Steel</div></div>
+      <div class="p1-stat"><div class="p1-stat-n">74<em>%</em></div><div class="p1-stat-l">Smaller Carbon Footprint</div></div>
+      <div class="p1-stat"><div class="p1-stat-n">700<em>°</em></div><div class="p1-stat-l">Max Operating Temp (°C)</div></div>
+    </div>
+  </div>
+
+  <div class="p1-mesh">
+    <div style="height:1px;background:linear-gradient(90deg,var(--orange),rgba(240,112,32,0.08));margin-bottom:7pt;"></div>
+    <div class="eyebrow">BFRP Mesh</div>
+    <div class="section-title">BasaltechSA <span class="acc">Reinforcing Mesh</span></div>
+    <div class="section-sub">Designed to strengthen roadways, highways, and structures by reducing reflective cracking. A superior, lightweight alternative to traditional steel reinforcement.</div>
+
+    <div class="two-col">
+      <div class="col-l">
+        <div class="eyebrow" style="margin-bottom:5pt;">Key Features &amp; Benefits</div>
+        <div class="feat-item"><div class="feat-dot"></div><div>
+          <span class="feat-title">Superior Tensile Strength</span>
+          <span class="feat-desc">Higher than E-glass and steel, ensuring robust reinforcement across all applications.</span>
+        </div></div>
+        <div class="feat-item"><div class="feat-dot"></div><div>
+          <span class="feat-title">Alkali &amp; Corrosion Resistance</span>
+          <span class="feat-desc">Prevents rust in high-alkali environments. Unlike steel, it will never rust or degrade.</span>
+        </div></div>
+        <div class="feat-item"><div class="feat-dot"></div><div>
+          <span class="feat-title">Ease of Installation</span>
+          <span class="feat-desc">Over 1000 m² fits on a 1-ton bakkie. No special equipment needed.</span>
+        </div></div>
+        <div class="feat-item"><div class="feat-dot"></div><div>
+          <span class="feat-title">High Temperature Tolerance</span>
+          <span class="feat-desc">Withstands paving and operational temperatures without losing strength.</span>
+        </div></div>
+        <div class="feat-item"><div class="feat-dot"></div><div>
+          <span class="feat-title">Environmentally Friendly</span>
+          <span class="feat-desc">Natural volcanic basalt rock with 74% less carbon footprint than steel.</span>
+        </div></div>
+        <div class="card-orange" style="margin-top:6pt;">
+          <div style="font-family:'URW Gothic',sans-serif;font-weight:700;font-size:6.5pt;color:var(--orange);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:3pt;">Logistics Advantage</div>
+          <div style="font-size:7.5pt;color:var(--text);line-height:1.45;">Over 1000 m² of reinforcing mesh can be transported on a standard 1-ton bakkie — dramatically reducing delivery costs compared to steel.</div>
+        </div>
+
+        <div class="qr-panel">
+          <div class="qr-panel-img">
+            <img src="file:///sessions/stoic-focused-clarke/mnt/BasaltechSA/images/qrcode-light.png" alt="Scan for website"/>
+          </div>
+          <div>
+            <div class="qr-panel-eyebrow">◆ Learn More</div>
+            <div class="qr-panel-title">Scan for the Full<br>Product Range</div>
+            <div class="qr-panel-text">Detailed specifications, case studies, and technical datasheets.</div>
+            <span class="qr-panel-url">www.basaltechsa.com</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-r">
+        <div class="img-box" style="margin-bottom:6pt;">
+          <img src="file:///sessions/stoic-focused-clarke/mnt/BasaltechSA/images/BasaltMesh1.jpg"
+               style="height:38mm;" alt="Basalt mesh"/>
+        </div>
+        <div class="img-box" style="margin-bottom:8pt;">
+          <img src="file:///sessions/stoic-focused-clarke/mnt/BasaltechSA/images/BasaltMeshRoad1.avif"
+               style="height:32mm;" alt="Mesh road installation"/>
+        </div>
+        <div class="eyebrow" style="margin-bottom:4pt;">Why Choose BFRP Mesh</div>
+        <div class="check-item"><span class="check-mark">✓</span><span class="check-text">Will not rust or corrode</span></div>
+        <div class="check-item"><span class="check-mark">✓</span><span class="check-text">Easy to transport &amp; install</span></div>
+        <div class="check-item"><span class="check-mark">✓</span><span class="check-text">Lower life cycle cost</span></div>
+        <div class="check-item"><span class="check-mark">✓</span><span class="check-text">Superior mechanical strength</span></div>
+        <div class="check-item"><span class="check-mark">✓</span><span class="check-text">Reduced shrinkage &amp; cracking</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pg-footer">
+    <span class="pg-footer-brand">BasaltechSA</span>
+    <span>BFRP Mesh + Fiber Solutions</span>
+    <span>basaltechsa.com</span>
+  </div>
+</div>
+
+
+<!-- ══════════ PAGE 2 — FIBER + CONTACT (unchanged) ══════════ -->
+<div class="page">
+  <div class="top-bar"></div>
+  <div class="btm-bar"></div>
+  <div class="stripes"></div>
+
+  <div class="p2-body">
+
+    <div class="eyebrow">BFRP Fiber</div>
+    <div class="section-title">BasaltechSA <span class="acc">Fiber</span></div>
+    <div class="section-sub">An innovative reinforcing material derived from volcanic basalt rock that dramatically improves concrete properties. High tensile strength, total corrosion resistance, and outstanding durability.</div>
+
+    <div class="two-col">
+      <div class="col-l">
+        <div class="eyebrow" style="margin-bottom:7pt;">Applications</div>
+        <div class="feat-item"><div class="feat-dot"></div><div>
+          <span class="feat-title">Road Surfaces</span>
+          <span class="feat-desc">Reinforces asphalt and cement concrete roads, runways, and pavements.</span>
+        </div></div>
+        <div class="feat-item"><div class="feat-dot"></div><div>
+          <span class="feat-title">Industrial Floors</span>
+          <span class="feat-desc">Ideal for logistics centres, parking lots, helipads, and screeds.</span>
+        </div></div>
+        <div class="feat-item"><div class="feat-dot"></div><div>
+          <span class="feat-title">Underground &amp; Civil Structures</span>
+          <span class="feat-desc">Enhances durability in metros, underground foundations, and communications.</span>
+        </div></div>
+        <div class="feat-item"><div class="feat-dot"></div><div>
+          <span class="feat-title">Buildings &amp; Bridges</span>
+          <span class="feat-desc">Strengthens structural elements, concrete structures, and dry mix applications.</span>
+        </div></div>
+        <div class="feat-item"><div class="feat-dot"></div><div>
+          <span class="feat-title">Soil Stabilisation</span>
+          <span class="feat-desc">Improves ground stability for slopes, embankments, and foundations.</span>
+        </div></div>
+
+        <div class="eyebrow" style="margin-top:9pt;margin-bottom:5pt;">Performance Comparison</div>
+        <table class="comp-table">
+          <thead>
+            <tr>
+              <th style="width:27mm;">Property</th>
+              <th class="hl" style="width:26mm;">Basalt Fiber ◆</th>
+              <th>Steel</th><th>Glass</th><th>PP</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Tensile (MPa)</td><td class="hl">1100–1400</td><td>360–420</td><td>35–530</td><td>170–260</td></tr>
+            <tr><td>Temp. (°C)</td><td class="hl">−260 to 700</td><td>−60 to 540</td><td>−60 to 250</td><td>−5 to 80</td></tr>
+            <tr><td>Density (g/cm³)</td><td class="hl">2.8–3.0</td><td>7.8</td><td>2.6–2.7</td><td>0.89–0.92</td></tr>
+            <tr><td>Elastic Mod. (GPa)</td><td class="hl">79–110</td><td>190–200</td><td>≤50</td><td>≤35</td></tr>
+            <tr><td>Corrosion</td><td class="hl"><span class="badge-green">Very High</span></td><td>Low</td><td>High</td><td>Low</td></tr>
+          </tbody>
+        </table>
+
+        <div class="img-box" style="margin-top:8pt;">
+          <img src="file:///sessions/stoic-focused-clarke/mnt/BasaltechSA/images/BasaltMesh3.jpg"
+               style="height:48mm;" alt="BasaltechSA BFRP mesh"/>
+        </div>
+      </div>
+
+      <div class="col-r">
+        <div class="img-box" style="margin-bottom:7pt;">
+          <img src="file:///sessions/stoic-focused-clarke/mnt/BasaltechSA/images/Fiber1.jpg"
+               style="height:50mm;" alt="Basalt fiber"/>
+        </div>
+        <div class="img-box" style="margin-bottom:9pt;">
+          <img src="file:///sessions/stoic-focused-clarke/mnt/BasaltechSA/images/FiberConcreteMix.jpg"
+               style="height:40mm;" alt="Fiber concrete mix"/>
+        </div>
+        <div class="eyebrow" style="margin-bottom:6pt;">Key Fiber Properties</div>
+        <div class="check-item"><span class="check-mark">✓</span><span class="check-text">100% Corrosion Proof</span></div>
+        <div class="check-item"><span class="check-mark">✓</span><span class="check-text">75% Lighter than Steel</span></div>
+        <div class="check-item"><span class="check-mark">✓</span><span class="check-text">Non-Conductive / Non-Magnetic</span></div>
+        <div class="check-item"><span class="check-mark">✓</span><span class="check-text">Eco-Friendly Volcanic Rock</span></div>
+        <div class="check-item"><span class="check-mark">✓</span><span class="check-text">Reduces Microcracks by 90%</span></div>
+        <div class="check-item"><span class="check-mark">✓</span><span class="check-text">+55% Flexural Strength</span></div>
+      </div>
+    </div>
+
+    <div style="height:1px;background:linear-gradient(90deg,var(--orange),rgba(240,112,32,0.08));margin:10pt 0 8pt;"></div>
+
+    <div class="contact-grid">
+      <div class="contact-col">
+        <div class="contact-col-title">Our Locations</div>
+        <div class="loc-item">
+          <div class="loc-icon">G</div>
+          <div><span class="loc-label">Gauteng</span><span class="loc-addr">Portion 20, 173 I.Q Sterkfontein<br>Krugersdorp</span></div>
+        </div>
+        <div class="loc-item">
+          <div class="loc-icon">L</div>
+          <div><span class="loc-label">Limpopo</span><span class="loc-addr">118 OR Tambo Drive<br>Lephalale, Limpopo</span></div>
+        </div>
+      </div>
+      <div class="contact-col">
+        <div class="contact-col-title">Direct Contacts</div>
+        <div class="person-card">
+          <div class="person-avatar">J</div>
+          <div><span class="person-name">Johan</span><span class="person-detail">082 456 9705<br>johan@basaltechsa.co.za</span></div>
+        </div>
+        <div class="person-card">
+          <div class="person-avatar">R</div>
+          <div><span class="person-name">Ronnie</span><span class="person-detail">082 411 4500<br>ronnie@basaltechsa.co.za</span></div>
+        </div>
+      </div>
+      <div class="contact-col">
+        <div class="contact-col-title">Why BasaltechSA</div>
+        <div class="card" style="margin-bottom:5pt;">
+          <div style="font-family:'URW Gothic',sans-serif;font-weight:700;font-size:8pt;color:var(--white);margin-bottom:3pt;">Proudly South African</div>
+          <div style="font-size:7.5pt;color:var(--muted);line-height:1.45;">Local knowledge, world-class BFRP standards. Serving Gauteng &amp; Limpopo.</div>
+        </div>
+        <div class="card">
+          <div style="font-family:'URW Gothic',sans-serif;font-weight:700;font-size:8pt;color:var(--white);margin-bottom:3pt;">Expert Technical Support</div>
+          <div style="font-size:7.5pt;color:var(--muted);line-height:1.45;">From specification to installation, our team provides end-to-end guidance.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="web-cta">
+      <div class="web-cta-qr">
+        <img src="file:///sessions/stoic-focused-clarke/mnt/BasaltechSA/images/qrcode-light.png" alt="Scan for basaltechsa.com"/>
+      </div>
+      <div style="flex:1;">
+        <div class="web-cta-label">Scan or Visit Our Website</div>
+        <div class="web-cta-headline">Get Quotes, Specs &amp; Case Studies</div>
+        <div class="web-cta-url">www.basaltechsa.com</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="pg-footer">
+    <span class="pg-footer-brand">BasaltechSA</span>
+    <span>Basalt Fiber &amp; Reinforcing Mesh</span>
+    <span>basaltechsa.com</span>
+  </div>
+</div>
+
+</body>
+</html>

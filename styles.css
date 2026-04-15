@@ -15,16 +15,16 @@
   --orange:      #F07020;
   --orange-dark: #C85A0C;
   --orange-glow: rgba(240, 112, 32, 0.14);
-  --dark:        #111214;
-  --dark-2:      #17181b;
-  --dark-3:      #1e2023;
-  --dark-card:   #222529;
-  --mid:         #2c2f35;
-  --line:        #2c2f35;
-  --text:        #e4e4e4;
-  --muted:       #8a8a8a;
-  --white:       #ffffff;
-  --green:       #3dba6e;
+  --dark:        #ffffff;
+  --dark-2:      #f7f8fa;
+  --dark-3:      #eef0f4;
+  --dark-card:   #e6e9ee;
+  --mid:         #d6dae1;
+  --line:        #d6dae1;
+  --text:        #1f2328;
+  --muted:       #5c6773;
+  --white:       #0b0d11;
+  --green:       #2e9a58;
   --radius:      6px;
   --t:           0.28s ease;
   --section-pad: 110px;
@@ -164,8 +164,9 @@ ul  { list-style: none; }
   transition: background var(--t), box-shadow var(--t);
 }
 #navbar.scrolled {
-  background: rgba(17, 18, 20, 0.96);
-  box-shadow: 0 2px 28px rgba(0, 0, 0, 0.55);
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 2px 18px rgba(0, 0, 0, 0.08);
+  border-bottom: 1px solid var(--line);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
 }
@@ -174,10 +175,11 @@ ul  { list-style: none; }
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 68px;
+  height: 84px;
 }
 
-.nav-logo img { height: 42px; width: auto; }
+.nav-logo { display: flex; align-items: center; }
+.nav-logo img { height: 64px; width: auto; display: block; }
 
 .nav-links {
   display: flex;
@@ -235,7 +237,7 @@ ul  { list-style: none; }
   align-items: center;
   position: relative;
   overflow: hidden;
-  padding-top: 68px;
+  padding-top: 84px;
 }
 
 .hero-bg {
@@ -244,7 +246,7 @@ ul  { list-style: none; }
   background-image: url('images/BasaltMeshRoad.avif');
   background-size: cover;
   background-position: center;
-  filter: brightness(0.22) saturate(0.6);
+  filter: brightness(1.02) saturate(0.85);
   z-index: 0;
 }
 
@@ -254,8 +256,8 @@ ul  { list-style: none; }
   z-index: 1;
   background: linear-gradient(
     100deg,
-    rgba(17, 18, 20, 0.93) 0%,
-    rgba(17, 18, 20, 0.6) 55%,
+    rgba(255, 255, 255, 0.93) 0%,
+    rgba(255, 255, 255, 0.6) 55%,
     transparent 100%
   );
 }
@@ -365,7 +367,7 @@ ul  { list-style: none; }
   position: absolute;
   bottom: 16px;
   left: 16px;
-  background: rgba(17, 18, 20, 0.9);
+  background: rgba(255, 255, 255, 0.9);
   border: 1px solid var(--line);
   border-radius: 10px;
   padding: 11px 14px;
@@ -690,7 +692,7 @@ ul  { list-style: none; }
 .app-label {
   position: absolute; bottom: 0; left: 0; right: 0;
   padding: 40px 18px 16px;
-  background: linear-gradient(to top, rgba(17,18,20,0.96), transparent);
+  background: linear-gradient(to top, rgba(255, 255, 255,0.96), transparent);
 }
 .app-label-tag   { font-family: 'Oswald', sans-serif; font-size: 0.65rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--orange); margin-bottom: 4px; }
 .app-label-title { font-family: 'Oswald', sans-serif; font-size: 0.98rem; font-weight: 600; color: var(--white); line-height: 1.2; }
@@ -944,6 +946,10 @@ ul  { list-style: none; }
   .props-grid { grid-template-columns: repeat(2, 1fr); }
   .apps-grid  { grid-template-columns: repeat(2, 1fr); }
   .about-grid { gap: 48px; }
+
+  .nav-inner { height: 76px; }
+  .nav-logo img { height: 56px; }
+  #hero { padding-top: 76px; }
 }
 
 /* ════════════════════════════════════════════════════
@@ -955,13 +961,17 @@ ul  { list-style: none; }
   .container { padding: 0 20px; }
 
   /* Navbar */
+  .nav-inner { height: 66px; }
+  .nav-logo img { height: 46px; }
+  #hero { padding-top: 66px; }
+
   .nav-links { display: none; }
   .nav-links.open {
     display: flex;
     flex-direction: column;
     position: absolute;
-    top: 68px; left: 0; right: 0;
-    background: rgba(17,18,20,0.98);
+    top: 66px; left: 0; right: 0;
+    background: rgba(255, 255, 255,0.98);
     padding: 16px 20px 20px;
     gap: 2px;
     backdrop-filter: blur(14px);
@@ -1026,6 +1036,12 @@ ul  { list-style: none; }
   :root { --section-pad: 60px; }
 
   .container { padding: 0 16px; }
+
+  /* Navbar on very small screens */
+  .nav-inner { height: 58px; }
+  .nav-logo img { height: 38px; }
+  #hero { padding-top: 58px; }
+  .nav-links.open { top: 58px; }
 
   /* Stack hero buttons */
   .hero-actions { flex-direction: column; }
