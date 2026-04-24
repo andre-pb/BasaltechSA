@@ -164,11 +164,11 @@ ul  { list-style: none; }
   transition: background var(--t), box-shadow var(--t);
 }
 #navbar.scrolled {
-  background: rgba(255, 255, 255, 0.92);
-  box-shadow: 0 2px 18px rgba(0, 0, 0, 0.08);
+  background: rgba(255, 255, 255, 0.58);
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
   border-bottom: 1px solid var(--line);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
 }
 
 .nav-inner {
@@ -692,7 +692,7 @@ ul  { list-style: none; }
 .app-label {
   position: absolute; bottom: 0; left: 0; right: 0;
   padding: 40px 18px 16px;
-  background: linear-gradient(to top, rgba(255, 255, 255,0.96), transparent);
+  background: linear-gradient(to top, rgba(255,255,255,0.96), transparent);
 }
 .app-label-tag   { font-family: 'Oswald', sans-serif; font-size: 0.65rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--orange); margin-bottom: 4px; }
 .app-label-title { font-family: 'Oswald', sans-serif; font-size: 0.98rem; font-weight: 600; color: var(--white); line-height: 1.2; }
@@ -961,17 +961,17 @@ ul  { list-style: none; }
   .container { padding: 0 20px; }
 
   /* Navbar */
-  .nav-inner { height: 66px; }
-  .nav-logo img { height: 46px; }
-  #hero { padding-top: 66px; }
+  .nav-inner { height: 82px; }
+  .nav-logo img { height: 68px; }
+  #hero { padding-top: 82px; }
 
   .nav-links { display: none; }
   .nav-links.open {
     display: flex;
     flex-direction: column;
     position: absolute;
-    top: 66px; left: 0; right: 0;
-    background: rgba(255, 255, 255,0.98);
+    top: 82px; left: 0; right: 0;
+    background: rgba(255,255,255,0.98);
     padding: 16px 20px 20px;
     gap: 2px;
     backdrop-filter: blur(14px);
@@ -1038,10 +1038,10 @@ ul  { list-style: none; }
   .container { padding: 0 16px; }
 
   /* Navbar on very small screens */
-  .nav-inner { height: 58px; }
-  .nav-logo img { height: 38px; }
-  #hero { padding-top: 58px; }
-  .nav-links.open { top: 58px; }
+  .nav-inner { height: 76px; }
+  .nav-logo img { height: 64px; }
+  #hero { padding-top: 76px; }
+  .nav-links.open { top: 76px; }
 
   /* Stack hero buttons */
   .hero-actions { flex-direction: column; }

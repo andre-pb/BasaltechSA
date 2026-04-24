@@ -530,42 +530,49 @@
       <!-- Form column -->
       <div class="contact-form-card">
         <h3 class="form-title">Send Us an Enquiry</h3>
-        <form>
+        <div data-fs-success style="text-align:center;padding:24px 16px;"></div>
+        <div data-fs-error style="text-align:center;color:#e05252;margin-bottom:12px;font-size:0.85rem;"></div>
+        <form id="enquiry-form">
           <div class="form-row">
             <div class="form-group">
               <label for="fname">First Name</label>
-              <input type="text" id="fname" name="fname" placeholder="John" autocomplete="given-name" />
+              <input type="text" id="fname" name="fname" placeholder="John" autocomplete="given-name" required data-fs-field />
+              <span data-fs-error="fname" style="color:#e05252;font-size:0.78rem;"></span>
             </div>
             <div class="form-group">
               <label for="lname">Last Name</label>
-              <input type="text" id="lname" name="lname" placeholder="Smith" autocomplete="family-name" />
+              <input type="text" id="lname" name="lname" placeholder="Smith" autocomplete="family-name" required data-fs-field />
+              <span data-fs-error="lname" style="color:#e05252;font-size:0.78rem;"></span>
             </div>
           </div>
           <div class="form-row">
             <div class="form-group">
               <label for="email">Email Address</label>
-              <input type="email" id="email" name="email" placeholder="john@example.com" autocomplete="email" inputmode="email" />
+              <input type="email" id="email" name="email" placeholder="john@example.com" autocomplete="email" inputmode="email" required data-fs-field />
+              <span data-fs-error="email" style="color:#e05252;font-size:0.78rem;"></span>
             </div>
             <div class="form-group">
               <label for="phone">Phone Number</label>
-              <input type="tel" id="phone" name="phone" placeholder="+27 ..." autocomplete="tel" inputmode="tel" />
+              <input type="tel" id="phone" name="phone" placeholder="+27 ..." autocomplete="tel" inputmode="tel" data-fs-field />
             </div>
           </div>
           <div class="form-group">
             <label for="product">Product of Interest</label>
-            <select id="product" name="product">
+            <select id="product" name="product" required data-fs-field>
               <option value="" disabled selected>Select a product...</option>
               <option>BasaltechSA Fiber</option>
               <option>BasaltechSA Reinforcing Mesh</option>
               <option>Both Products</option>
               <option>General Enquiry / Technical Advice</option>
             </select>
+            <span data-fs-error="product" style="color:#e05252;font-size:0.78rem;"></span>
           </div>
           <div class="form-group">
             <label for="message">Project Details</label>
-            <textarea id="message" name="message" placeholder="Tell us about your project &mdash; type, location, scale, timeline..."></textarea>
+            <textarea id="message" name="message" placeholder="Tell us about your project &mdash; type, location, scale, timeline..." required data-fs-field></textarea>
+            <span data-fs-error="message" style="color:#e05252;font-size:0.78rem;"></span>
           </div>
-          <button type="submit" class="btn btn-primary form-submit">Send Enquiry &rarr;</button>
+          <button type="submit" class="btn btn-primary form-submit" data-fs-submit-btn>Send Enquiry &rarr;</button>
         </form>
       </div>
 
@@ -637,7 +644,12 @@
   }
 
   window.addEventListener('scroll', updateActiveLink, { passive: true });
+
+  // Formspree AJAX form
+  window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
+  formspree('initForm', { formElement: '#enquiry-form', formId: 'xgorrjaw' });
 </script>
+<script src="https://unpkg.com/@formspree/ajax@1" defer></script>
 
 </body>
 </html>
