@@ -175,11 +175,11 @@ ul  { list-style: none; }
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 96px;
+  height: 120px;
 }
 
 .nav-logo { display: flex; align-items: center; }
-.nav-logo img { height: 80px; width: auto; display: block; }
+.nav-logo img { height: 96px; width: auto; display: block; }
 
 .nav-links {
   display: flex;
@@ -237,7 +237,7 @@ ul  { list-style: none; }
   align-items: center;
   position: relative;
   overflow: hidden;
-  padding-top: 96px;
+  padding-top: 120px;
 }
 
 .hero-bg {
