@@ -127,7 +127,7 @@ ul  { list-style: none; }
 .btn-outline {
   background: transparent;
   color: var(--white);
-  border: 1.5px solid rgba(255, 255, 255, 0.22);
+  border: 1.5px solid rgba(11, 13, 17, 0.3);
 }
 .btn-outline:hover  { border-color: var(--orange); color: var(--orange); }
 .btn-outline:active { border-color: var(--orange-dark); color: var(--orange-dark); }
@@ -318,7 +318,7 @@ ul  { list-style: none; }
 
 .hero-sub {
   font-size: 1rem;
-  color: #aaa;
+  color: #4a5060;
   line-height: 1.8;
   max-width: 480px;
   margin-bottom: 32px;
