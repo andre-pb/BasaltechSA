@@ -983,7 +983,8 @@ ul  { list-style: none; }
   line-height: 1.05;
 }
 .spec-num em { color: var(--orange); font-style: normal; font-size: 0.92rem; font-weight: 600; }
-.spec-label { font-size: 0.8rem; color: var(--muted); line-height: 1.5; margin-top: 8px; }
+.spec-label { font-size: 0.8rem; color: var(--text); font-weight: 600; line-height: 1.5; margin-top: 8px; }
+.spec-note  { font-size: 0.78rem; color: var(--muted); line-height: 1.55; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--line); }
 
 /* Factory test card */
 .test-card {
