@@ -703,7 +703,7 @@ ul  { list-style: none; }
 /* ════════════════════════════════════════════════════
    COMPARISON
 ════════════════════════════════════════════════════ */
-#comparison { padding: var(--section-pad) 0; background: var(--dark-2); }
+#engineering { padding: var(--section-pad) 0; background: var(--dark-2); }
 
 .table-wrap {
   background: var(--dark-card);
@@ -940,12 +940,151 @@ ul  { list-style: none; }
 .footer-nav a:hover { color: var(--orange); }
 
 /* ════════════════════════════════════════════════════
+   ENGINEERING DATA  (extends the Engineering section)
+════════════════════════════════════════════════════ */
+.table-note {
+  font-size: 0.78rem;
+  color: var(--muted);
+  line-height: 1.65;
+  margin-top: 16px;
+  max-width: 900px;
+}
+
+.eng-grid {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 24px;
+  align-items: stretch;
+  margin-top: 40px;
+}
+
+/* Headline spec tiles */
+.spec-tiles {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.spec-tile {
+  background: var(--dark-card);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 22px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: border-color var(--t), transform var(--t);
+}
+.spec-tile:hover { border-color: rgba(240,112,32,0.4); transform: translateY(-3px); }
+.spec-num {
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.65rem;
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.05;
+}
+.spec-num em { color: var(--orange); font-style: normal; font-size: 0.92rem; font-weight: 600; }
+.spec-label { font-size: 0.8rem; color: var(--muted); line-height: 1.5; margin-top: 8px; }
+
+/* Factory test card */
+.test-card {
+  background: var(--dark-card);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--orange);
+  border-radius: 12px;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+}
+.test-tag {
+  align-self: flex-start;
+  background: var(--orange-glow);
+  border: 1px solid rgba(240,112,32,0.3);
+  color: var(--orange);
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 4px;
+  margin-bottom: 14px;
+}
+.test-title {
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 14px;
+}
+.test-rows { display: flex; flex-direction: column; }
+.test-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line);
+}
+.test-row:first-child { padding-top: 0; }
+.test-row > span:first-child { font-size: 0.85rem; color: var(--muted); }
+.test-val {
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--orange);
+  white-space: nowrap;
+}
+.test-note { font-size: 0.77rem; color: var(--muted); line-height: 1.6; margin-top: auto; padding-top: 16px; }
+
+/* Standards strip */
+.std-strip {
+  background: var(--dark);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 32px;
+  margin-top: 24px;
+}
+.std-heading {
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--white);
+  text-align: center;
+  margin-bottom: 22px;
+}
+.std-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+.std-card {
+  background: var(--dark-card);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 18px 16px;
+  text-align: center;
+  transition: border-color var(--t), transform var(--t);
+}
+.std-card:hover { border-color: rgba(240,112,32,0.4); transform: translateY(-3px); }
+.std-code {
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--orange);
+  margin-bottom: 7px;
+  line-height: 1.2;
+}
+.std-desc { font-size: 0.77rem; color: var(--muted); line-height: 1.5; }
+.eng-note { font-size: 0.76rem; color: var(--muted); line-height: 1.6; text-align: center; margin-top: 22px; max-width: 760px; margin-left: auto; margin-right: auto; }
+
+/* ════════════════════════════════════════════════════
    RESPONSIVE — TABLET  (≤ 1040px)
 ════════════════════════════════════════════════════ */
 @media (max-width: 1040px) {
   .props-grid { grid-template-columns: repeat(2, 1fr); }
   .apps-grid  { grid-template-columns: repeat(2, 1fr); }
   .about-grid { gap: 48px; }
+  .std-grid   { grid-template-columns: repeat(2, 1fr); }
 
   .nav-inner { height: 82px; }
   .nav-logo img { height: 68px; }
@@ -1007,6 +1146,12 @@ ul  { list-style: none; }
   .products-grid { grid-template-columns: 1fr; }
   .product-body { padding: 22px; }
 
+  /* Engineering */
+  .eng-grid  { grid-template-columns: 1fr; }
+  .std-grid  { grid-template-columns: 1fr 1fr; }
+  .std-strip { padding: 22px; }
+  .test-card { padding: 22px; }
+
   /* Properties */
   .props-grid { grid-template-columns: 1fr; }
 
@@ -1063,6 +1208,10 @@ ul  { list-style: none; }
     padding: 8px 16px 0;
     font-family: 'Inter', sans-serif;
   }
+
+  /* Engineering grids stack */
+  .std-grid   { grid-template-columns: 1fr; }
+  .spec-tiles { grid-template-columns: 1fr; }
 
   /* Person links stack */
   .person-links { flex-direction: column; gap: 4px; }
